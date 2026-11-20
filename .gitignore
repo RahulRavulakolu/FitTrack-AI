@@ -7,6 +7,9 @@ test-results/
 playwright-report/
 *.log
 releases/
+*.tar.gz
+deploy/azure/.env
+deploy/azure/backups/
 android/.gradle/
 android/local.properties
 android/**/build/

@@ -2,7 +2,7 @@
 
 A fitness application for **Android and iPhone**, with Capacitor native projects, a React/TypeScript interface bundled inside each app, an Express API and MongoDB persistence. Four main destinations: Home, Nutrition, Workouts and Profile. Native features include camera/gallery access, Android Keystore/iOS Keychain session storage, back-button handling and the system share sheet for data exports.
 
-See **[MOBILE.md](MOBILE.md)** for Android installation, the Windows server launcher, iPhone build/signing and native verification. Android builds produce `releases/FitTrack-AI-Android.apk`. iOS compilation requires macOS and Xcode; no signed iPhone IPA is produced on this Windows computer. The browser is also available for development and desktop access.
+See **[MOBILE.md](docs/MOBILE.md)** for Android installation, the Windows server launcher, iPhone build/signing and native verification. Android builds produce `releases/FitTrack-AI-Android.apk`. iOS compilation requires macOS and Xcode; no signed iPhone IPA is produced on this Windows computer. The browser is also available for development and desktop access.
 
 ## Start locally
 
@@ -46,7 +46,7 @@ Copy `.env.example` to `.env` and set values **on the server only**. Never prefi
 | Password-reset email                       | SMTP provider such as Brevo, Postmark or SES        | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`        |
 | Web host                                   | Render or any Node/Docker host with HTTPS           | `APP_ORIGIN`, `NODE_ENV=production`, optionally `TRUST_PROXY=1`        |
 
-Restart the server after changing environment variables. Run **Setup-Free-AI.cmd** once to download Ollama and the free `qwen3-vl:2b-instruct` model on this computer. **Start-FitTrack-Server.cmd** then starts the local model service and backend. No LLM is downloaded to the phone. The server only accepts a loopback Ollama address and rejects cloud-model names; the launcher disables Ollama cloud features. **Profile → Privacy & AI → Enable local AI** controls inference. See [LOCAL_AI.md](LOCAL_AI.md). Responses are validated before display, and food estimates still require your review. The assistant does not write records.
+Restart the server after changing environment variables. Run **Setup-Free-AI.cmd** once to download Ollama and the free `qwen3-vl:2b-instruct` model on this computer. **Start-FitTrack-Server.cmd** then starts the local model service and backend. No LLM is downloaded to the phone. The server only accepts a loopback Ollama address and rejects cloud-model names; the launcher disables Ollama cloud features. **Profile → Privacy & AI → Enable local AI** controls inference. See [LOCAL_AI.md](docs/LOCAL_AI.md). Responses are validated before display, and food estimates still require your review. The assistant does not write records.
 
 Cloudinary photos use public asset URLs. The UI explains this in privacy settings. Account deletion removes hosted assets under the user's folder before removing database records. Local development uploads require authentication.
 
@@ -69,11 +69,11 @@ npm run test:e2e
 
 The browser suite uses installed Microsoft Edge by default and creates/deletes its own account through the UI. For another environment, set `PLAYWRIGHT_CHANNEL=chrome`, or `PLAYWRIGHT_CHANNEL=chromium` and run `npx playwright install chromium` first. The suite covers registration → onboarding → food create/edit → custom split → actual sets → explicit completion/PR → water/activity → photo crop → theme → logout/login → mobile views → account deletion. Screenshots and failure traces are in `test-results` and the HTML report in `playwright-report`. Failed runs can leave accounts whose email begins `browser-` and ends `@fittrack.invalid`; these are test records, never shown to other users.
 
-AI response contracts are tested with mocked local-model responses. Actual local inference is checked separately after installing Ollama; Cloudinary, SMTP delivery and physical-device Health Connect/camera behavior require their services/devices. Media links are source-dependent; 17 catalog exercises include matched real wger media. Entries without a verified match show written instructions/source guides rather than invented demonstrations. See [EXERCISE_MEDIA.md](EXERCISE_MEDIA.md) for original media authors, licenses and links.
+AI response contracts are tested with mocked local-model responses. Actual local inference is checked separately after installing Ollama; Cloudinary, SMTP delivery and physical-device Health Connect/camera behavior require their services/devices. Media links are source-dependent; 17 catalog exercises include matched real wger media. Entries without a verified match show written instructions/source guides rather than invented demonstrations. See [EXERCISE_MEDIA.md](docs/EXERCISE_MEDIA.md) for original media authors, licenses and links.
 
 ## Deploy
 
-For this project's Azure for Students credit and custom domain, use **[AZURE.md](AZURE.md)** and `deploy/azure/`. That package runs the free model alongside the API and keeps photos on a private persistent volume. It is prepared for review; no cloud service is live yet.
+For this project's Azure for Students credit and custom domain, use **[AZURE.md](docs/AZURE.md)** and `deploy/azure/`. That package runs the free model alongside the API and keeps photos on a private persistent volume. It is prepared for review; no cloud service is live yet.
 
 This repository includes a multi-stage `Dockerfile`, `.dockerignore` and a Render blueprint. Nothing has been published to a hosting account automatically.
 
