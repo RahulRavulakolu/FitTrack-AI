@@ -1,0 +1,4 @@
+{$FITTRACK_DOMAIN} {
+    encode zstd gzip
+    reverse_proxy ollama:4000
+}

@@ -1,0 +1,10 @@
+#cloud-config
+package_update: true
+packages:
+  - docker.io
+  - docker-compose-v2
+  - unattended-upgrades
+runcmd:
+  - [systemctl, enable, --now, docker]
+# App code and secrets are transferred separately after provisioning.
+# No database, model endpoint or application port is opened publicly here.
